@@ -4,94 +4,110 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Секретный терминал ❤️</title>
+<title>System Monitor</title>
 <style>
 *{box-sizing:border-box}
 body{
-  margin:0;padding:20px;min-height:100vh;
-  background:#020702;color:#00ff75;
-  font-family:monospace;
+  margin:0;background:#08090c;color:#c8d4d8;
+  font-family:monospace;min-height:100vh;
+  display:flex;justify-content:center;align-items:center;
+  padding:18px;transition:background .15s;
 }
-h1{text-align:center;font-size:25px;text-shadow:0 0 12px #00ff75}
-.panel{
-  border:1px solid #00ff75;border-radius:12px;
-  padding:16px;margin:18px 0;
-  box-shadow:0 0 12px #003b19;
-}
-#logs{height:240px;overflow:hidden;line-height:1.8;font-size:14px}
-.bar{height:18px;border:1px solid #00ff75;border-radius:5px;overflow:hidden}
-#progress{height:100%;width:0;background:#00ff75;transition:width .3s}
-button{
-  background:#00ff75;color:#001b0a;border:0;
-  padding:14px 18px;border-radius:8px;
-  font-weight:bold;font-size:16px;width:100%;margin-top:14px;
-}
-#reveal{display:none;text-align:center;color:white;font-family:Arial,sans-serif}
-#reveal h2{color:#00ff75;font-size:30px}
-.love{color:#ff75b5!important;text-shadow:0 0 15px #ff2f91}
-.small{text-align:center;color:#83a98e;font-size:12px}
-.heart{font-size:42px;animation:pulse 1s infinite alternate}
-@keyframes pulse{to{transform:scale(1.15)}}
+.panel{width:100%;max-width:650px;border:1px solid #343a40;
+  background:#0d1014;padding:20px;box-shadow:0 0 30px #000}
+.top{color:#89979f;border-bottom:1px solid #30363d;
+  padding-bottom:12px;font-size:12px}
+h2{font-size:17px;font-weight:normal;color:#d5dce0}
+#status{color:#d4aa55;margin:18px 0}
+#log{height:250px;overflow:hidden;font-size:12px;line-height:1.8;
+  color:#91a5aa;overflow-wrap:anywhere}
+.bar{height:4px;background:#252a30;margin:18px 0}
+#progress{height:100%;width:0;background:#c39b4a;transition:width .5s}
+button{background:#151a20;color:#d5dce0;border:1px solid #48525c;
+  padding:12px 16px;font:inherit;width:100%;cursor:pointer}
+#reveal{display:none;text-align:center;padding:30px 5px}
+.red{color:#e56c6c}
+.small{font-size:11px;color:#718087}
+.glitch{animation:shake .18s 3}
+@keyframes shake{0%,100%{transform:translateX(0)}
+25%{transform:translateX(2px)}75%{transform:translateX(-2px)}}
 </style>
 </head>
 <body>
-
-<h1>⚠ СЕКРЕТНЫЙ ТЕРМИНАЛ</h1>
-<p class="small">ДЕМОНСТРАЦИЯ • БЕЗОПАСНЫЙ РОЗЫГРЫШ</p>
-
-<div id="terminal">
-  <div class="panel">
-    <div id="logs"></div>
+<main class="panel">
+  <div class="top">SYSTEM MONITOR / LOCAL DIAGNOSTICS</div>
+  <section id="main">
+    <h2>Состояние системы</h2>
+    <div id="status">Ожидание запуска проверки...</div>
+    <div id="log">Монитор готов.<br>Ожидание команды пользователя.</div>
     <div class="bar"><div id="progress"></div></div>
-    <p id="percent">Подготовка: 0%</p>
-  </div>
-  <p>Подожди немного… для тебя приготовлен сюрприз 😉</p>
-  <button onclick="reveal()">Узнать правду ❤️</button>
-</div>
-
-<div id="reveal" class="panel">
-  <div class="heart">❤️</div>
-  <h2>😂 ШУТКА!</h2>
-  <p>Соня, твой телефон не взломан.</p>
-  <p>Это просто розыгрыш, никакие данные не собирались.</p>
-  <hr>
-  <h2 class="love">Соня, я тебя люблю ❤️</h2>
-  <p>Ты делаешь мой мир ярче ✨</p>
-  <p>Надеюсь, я смог подарить тебе улыбку 😊</p>
-  <button onclick="location.reload()">Посмотреть ещё раз 💚</button>
-</div>
-
+    <div class="small" id="percent">0% — проверка не запущена</div>
+    <br>
+    <button id="start">Запустить диагностику</button>
+  </section>
+  <section id="reveal">
+    <h2 class="red">СЦЕНАРИЙ ЗАВЕРШЁН</h2>
+    <p>Это был розыгрыш 😈</p>
+    <p>Твой телефон не взломан. Страница ничего не проверяла и не собирала.</p>
+    <button onclick="location.reload()">Запустить снова</button>
+  </section>
+</main>
 <script>
 const messages=[
-  "Запуск демонстрационного терминала...",
-  "Подключение к вымышленному серверу...",
-  "Сканирование виртуальных систем...",
-  "Проверка цифровых сигналов...",
-  "Обработка декоративного кода...",
-  "Подготовка сюрприза для Сони..."
+ [0,"Инициализация локального интерфейса..."],
+ [5,"Подготовка диагностических модулей..."],
+ [12,"Проверка отображения компонентов..."],
+ [19,"Обнаружены нестандартные визуальные события..."],
+ [27,"Повторная проверка состояния интерфейса..."],
+ [35,"Ответ получен. Выполняется перепроверка..."],
+ [43,"Временная ошибка отображения. Продолжение..."],
+ [51,"Повторная инициализация визуальных компонентов..."],
+ [60,"Некоторые сообщения могут отображаться с задержкой..."],
+ [68,"Выполняется восстановление интерфейса..."],
+ [77,"Синхронизация индикаторов..."],
+ [87,"Завершающая проверка анимации..."],
+ [96,"Подготовка финального экрана..."]
 ];
-
-let i=0;
-const logs=document.getElementById("logs");
-const timer=setInterval(()=>{
-  if(i<messages.length){
-    const line=document.createElement("div");
-    line.textContent="> "+messages[i++];
-    logs.appendChild(line);
-    const p=Math.round(i/messages.length*95);
-    document.getElementById("progress").style.width=p+"%";
-    document.getElementById("percent").textContent="Демонстрация: "+p+"%";
-  }else{
-    clearInterval(timer);
+const start=document.getElementById('start');
+const status=document.getElementById('status');
+const log=document.getElementById('log');
+const progress=document.getElementById('progress');
+const percent=document.getElementById('percent');
+let running=false;
+start.onclick=()=>{
+ if(running)return;
+ running=true;start.disabled=true;
+ start.textContent="Диагностика выполняется...";
+ const begin=Date.now(),duration=90000;
+ let last=-1;
+ function tick(){
+  const elapsed=Date.now()-begin;
+  const p=Math.min(100,Math.floor(elapsed/duration*100));
+  progress.style.width=p+"%";
+  percent.textContent=p+"% — демонстрационная анимация";
+  let idx=0;
+  messages.forEach((m,i)=>{if(p>=m[0])idx=i});
+  if(idx!==last){
+   last=idx;
+   status.textContent=messages[idx][1];
+   const line="["+new Date().toLocaleTimeString()+"] "+messages[idx][1];
+   log.innerHTML+= "<br>"+line.replace(/</g,"&lt;").replace(/>/g,"&gt;");
+   log.scrollTop=log.scrollHeight;
   }
-},1100);
-
-function reveal(){
-  clearInterval(timer);
-  document.getElementById("terminal").style.display="none";
-  document.getElementById("reveal").style.display="block";
-  window.scrollTo(0,0);
-}
+  if(p>=100){
+   status.textContent="Демонстрация завершена.";
+   document.getElementById('main').style.display="none";
+   document.getElementById('reveal').style.display="block";
+   return;
+  }
+  if(p===43||p===68){
+   document.querySelector('.panel').classList.add('glitch');
+   setTimeout(()=>document.querySelector('.panel').classList.remove('glitch'),600);
+  }
+  setTimeout(tick,700);
+ }
+ tick();
+};
 </script>
 </body>
 </html>
