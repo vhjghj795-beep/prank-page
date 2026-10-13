@@ -1,0 +1,97 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Секретный терминал ❤️</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0;padding:20px;min-height:100vh;
+  background:#020702;color:#00ff75;
+  font-family:monospace;
+}
+h1{text-align:center;font-size:25px;text-shadow:0 0 12px #00ff75}
+.panel{
+  border:1px solid #00ff75;border-radius:12px;
+  padding:16px;margin:18px 0;
+  box-shadow:0 0 12px #003b19;
+}
+#logs{height:240px;overflow:hidden;line-height:1.8;font-size:14px}
+.bar{height:18px;border:1px solid #00ff75;border-radius:5px;overflow:hidden}
+#progress{height:100%;width:0;background:#00ff75;transition:width .3s}
+button{
+  background:#00ff75;color:#001b0a;border:0;
+  padding:14px 18px;border-radius:8px;
+  font-weight:bold;font-size:16px;width:100%;margin-top:14px;
+}
+#reveal{display:none;text-align:center;color:white;font-family:Arial,sans-serif}
+#reveal h2{color:#00ff75;font-size:30px}
+.love{color:#ff75b5!important;text-shadow:0 0 15px #ff2f91}
+.small{text-align:center;color:#83a98e;font-size:12px}
+.heart{font-size:42px;animation:pulse 1s infinite alternate}
+@keyframes pulse{to{transform:scale(1.15)}}
+</style>
+</head>
+<body>
+
+<h1>⚠ СЕКРЕТНЫЙ ТЕРМИНАЛ</h1>
+<p class="small">ДЕМОНСТРАЦИЯ • БЕЗОПАСНЫЙ РОЗЫГРЫШ</p>
+
+<div id="terminal">
+  <div class="panel">
+    <div id="logs"></div>
+    <div class="bar"><div id="progress"></div></div>
+    <p id="percent">Подготовка: 0%</p>
+  </div>
+  <p>Подожди немного… для тебя приготовлен сюрприз 😉</p>
+  <button onclick="reveal()">Узнать правду ❤️</button>
+</div>
+
+<div id="reveal" class="panel">
+  <div class="heart">❤️</div>
+  <h2>😂 ШУТКА!</h2>
+  <p>Соня, твой телефон не взломан.</p>
+  <p>Это просто розыгрыш, никакие данные не собирались.</p>
+  <hr>
+  <h2 class="love">Соня, я тебя люблю ❤️</h2>
+  <p>Ты делаешь мой мир ярче ✨</p>
+  <p>Надеюсь, я смог подарить тебе улыбку 😊</p>
+  <button onclick="location.reload()">Посмотреть ещё раз 💚</button>
+</div>
+
+<script>
+const messages=[
+  "Запуск демонстрационного терминала...",
+  "Подключение к вымышленному серверу...",
+  "Сканирование виртуальных систем...",
+  "Проверка цифровых сигналов...",
+  "Обработка декоративного кода...",
+  "Подготовка сюрприза для Сони..."
+];
+
+let i=0;
+const logs=document.getElementById("logs");
+const timer=setInterval(()=>{
+  if(i<messages.length){
+    const line=document.createElement("div");
+    line.textContent="> "+messages[i++];
+    logs.appendChild(line);
+    const p=Math.round(i/messages.length*95);
+    document.getElementById("progress").style.width=p+"%";
+    document.getElementById("percent").textContent="Демонстрация: "+p+"%";
+  }else{
+    clearInterval(timer);
+  }
+},1100);
+
+function reveal(){
+  clearInterval(timer);
+  document.getElementById("terminal").style.display="none";
+  document.getElementById("reveal").style.display="block";
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>
